@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "677877674279",
+    "project_id": "registerationsite-87e49",
+    "storage_bucket": "registerationsite-87e49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677877674279:android:0bc68f551723442bbbb902",
+        "android_client_info": {
+          "package_name": "com.gritacademy.registerationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-qOB5Mgz9Q2IH7_hmdWJtlWEaeJCg458"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
