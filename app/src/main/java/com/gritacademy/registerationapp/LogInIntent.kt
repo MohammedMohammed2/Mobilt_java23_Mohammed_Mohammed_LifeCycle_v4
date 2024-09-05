@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
@@ -21,10 +22,12 @@ class LogInIntent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in_intent)
         auth = FirebaseAuth.getInstance()
-
         var doneLoginBtn: Button = findViewById(R.id.doneLogIn)
         var emailLogInField: TextView = findViewById(R.id.emailLogIn)
         var passwordLogInField: TextView = findViewById(R.id.passwordLogIn)
+        val db = Firebase.firestore
+
+
 
 
         doneLoginBtn.setOnClickListener(View.OnClickListener {
@@ -32,17 +35,24 @@ class LogInIntent : AppCompatActivity() {
             var sPasswordLogin = passwordLogInField.text.toString().trim()
 
 
-            auth.signInWithEmailAndPassword(sEmailLogin,sPasswordLogin).addOnCompleteListener() {
-                task-> if (task.isSuccessful) {
-                val logedInUser = auth.currentUser
-                if (logedInUser != null) {
-                    Toast.makeText(this,"welcome" + logedInUser.displayName, Toast.LENGTH_SHORT).show()
+            auth.signInWithEmailAndPassword(sEmailLogin, sPasswordLogin)
+                .addOnCompleteListener() { task ->
+                    if (task.isSuccessful) {
+                        val logedInUser = auth.currentUser
+                        if (logedInUser != null) {
+                            db.collection("users").document(logedInUser.uid).get().addOnSuccessListener {task->
+                                val name = task.get("name")
+                                Toast.makeText(
+                                    this,
+                                    "welcome " + name ,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
-                }
-                else{
-                    Toast.makeText(this,task.exception?.message, Toast.LENGTH_SHORT).show()
-                }
-            }
 
         })
     }
