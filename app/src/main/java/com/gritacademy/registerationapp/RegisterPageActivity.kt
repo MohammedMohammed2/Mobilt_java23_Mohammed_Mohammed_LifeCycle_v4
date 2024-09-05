@@ -1,5 +1,6 @@
 package com.gritacademy.registerationapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,11 +29,11 @@ class RegisterPageActivity : AppCompatActivity() {
         val homeIntent = Intent(this, MainActivity::class.java)
 
         var regiDone: Button = findViewById(R.id.Done)
+
         var nameRegiField: EditText = findViewById(R.id.nameRegi)
         var passwordRegiField: EditText = findViewById(R.id.passwordRegi)
         var emailAdressRegiField: EditText = findViewById(R.id.emailAddressRegi)
         var phoneRegiField: EditText = findViewById(R.id.phoneRegi)
-
 
         auth = FirebaseAuth.getInstance()
 
@@ -83,12 +84,11 @@ class RegisterPageActivity : AppCompatActivity() {
                 emailAdressRegiField.text.clear()
                 phoneRegiField.text.clear()
 
-            } else {
+            }
+            else {
                 Toast.makeText(this, "Please fill in your credentials", Toast.LENGTH_SHORT)
                     .show()
             }
         })
-
-
     }
 }
