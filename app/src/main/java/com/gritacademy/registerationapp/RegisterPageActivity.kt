@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -31,7 +32,7 @@ class RegisterPageActivity : AppCompatActivity() {
         var passwordRegiField: EditText = findViewById(R.id.passwordRegi)
         var emailAdressRegiField: EditText = findViewById(R.id.emailAddressRegi)
         var phoneRegiField: EditText = findViewById(R.id.phoneRegi)
-        var birthDateRegiField: EditText = findViewById(R.id.dateRegi)
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -41,9 +42,8 @@ class RegisterPageActivity : AppCompatActivity() {
             val sPassword = passwordRegiField.text.toString().trim()
             val sEmail = emailAdressRegiField.text.toString().trim()
             val sPhone = phoneRegiField.text.toString().trim()
-            val sBirthDate = birthDateRegiField.text.toString().trim()
 
-            if (sName != "" && sPassword != "" && sEmail != "" && sPhone != "" && sBirthDate != "") {
+            if (sName != "" && sPassword != "" && sEmail != "" && sPhone != "") {
                 auth.createUserWithEmailAndPassword(sEmail, sPassword)
                     .addOnCompleteListener() { result ->
                         if (result.isSuccessful) {
@@ -54,7 +54,6 @@ class RegisterPageActivity : AppCompatActivity() {
                                 "password" to sPassword,
                                 "email" to sEmail,
                                 "phone" to sPhone,
-                                "DateOfBirth" to sBirthDate,
                             )
                             if (userId != null) {
                                 db.collection("users").document(userId).set(user)
@@ -83,10 +82,10 @@ class RegisterPageActivity : AppCompatActivity() {
                 passwordRegiField.text.clear()
                 emailAdressRegiField.text.clear()
                 phoneRegiField.text.clear()
-                birthDateRegiField.text.clear()
 
             } else {
-                Toast.makeText(this, "Please fill in your credentials", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill in your credentials", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
 

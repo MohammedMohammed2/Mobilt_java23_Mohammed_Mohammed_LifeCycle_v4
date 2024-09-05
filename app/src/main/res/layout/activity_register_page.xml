@@ -60,24 +60,12 @@
         android:ems="10"
         android:hint="PhoneNumber"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddressRegi" />
-
-    <EditText
-        android:id="@+id/dateRegi"
-        android:layout_width="230dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/Done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneRegi"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressRegi"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/Done"
@@ -87,6 +75,8 @@
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameRegi" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
