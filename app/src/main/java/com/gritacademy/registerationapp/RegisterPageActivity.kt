@@ -84,8 +84,7 @@ class RegisterPageActivity : AppCompatActivity() {
                 emailAdressRegiField.text.clear()
                 phoneRegiField.text.clear()
 
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Please fill in your credentials", Toast.LENGTH_SHORT)
                     .show()
             }

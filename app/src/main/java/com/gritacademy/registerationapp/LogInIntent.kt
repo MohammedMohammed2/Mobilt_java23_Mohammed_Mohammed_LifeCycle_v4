@@ -2,6 +2,7 @@ package com.gritacademy.registerationapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.os.Bundle
@@ -12,8 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 
@@ -28,15 +27,17 @@ class LogInIntent : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in_intent)
+
         auth = FirebaseAuth.getInstance()
         doneLoginBtn = findViewById(R.id.doneLogIn)
         emailLogInField = findViewById(R.id.emailLogIn)
         passwordLogInField = findViewById(R.id.passwordLogIn)
         sharedpref=getSharedPreferences("storedData", Context.MODE_PRIVATE)
         editor = sharedpref.edit()
+
+
+        val signedIn =Intent(this,SignedInPage::class.java)
         val db = Firebase.firestore
-
-
 
 
         doneLoginBtn.setOnClickListener(View.OnClickListener {
@@ -48,8 +49,7 @@ class LogInIntent : AppCompatActivity() {
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
                             val logedInUser = auth.currentUser
-                            if (logedInUser != null) {
-                                db.collection("users").document(logedInUser.uid).get()
+                            if (logedInUser != null) { db.collection("users").document(logedInUser.uid).get()
                                     .addOnSuccessListener { task ->
                                         val name = task.get("name")
                                         Toast.makeText(
@@ -57,6 +57,7 @@ class LogInIntent : AppCompatActivity() {
                                             "welcome " + name,
                                             Toast.LENGTH_SHORT
                                         ).show()
+                                      startActivity(signedIn)
                                     }
                             }
                         } else {
