@@ -37,6 +37,7 @@ class RegisterPageActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        //creates a new user with the given credentials
         regiDone.setOnClickListener(View.OnClickListener {
 
             val sName = nameRegiField.text.toString().trim()

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.firestore
 
 
 class LogInIntent : AppCompatActivity() {
+    //loacal variables
     lateinit var auth: FirebaseAuth
     lateinit var doneLoginBtn: Button
     lateinit var emailLogInField: TextView
@@ -28,18 +29,26 @@ class LogInIntent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in_intent)
 
+        //helps track the loged in person
         auth = FirebaseAuth.getInstance()
+
+        //variables for textview and buttons
         doneLoginBtn = findViewById(R.id.doneLogIn)
         emailLogInField = findViewById(R.id.emailLogIn)
         passwordLogInField = findViewById(R.id.passwordLogIn)
+
+        //helps saving last inputed value
         sharedpref=getSharedPreferences("storedData", Context.MODE_PRIVATE)
         editor = sharedpref.edit()
 
 
+        //intent for next page
         val signedIn =Intent(this,SignedInPage::class.java)
+
+
         val db = Firebase.firestore
 
-
+        //when clicking the button after filling in a fields it will log the user in and show a toast to welcome the person with their name
         doneLoginBtn.setOnClickListener(View.OnClickListener {
             var sEmailLogin = emailLogInField.text.toString().trim()
             var sPasswordLogin = passwordLogInField.text.toString().trim()

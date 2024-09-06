@@ -21,10 +21,12 @@ class MainActivity : AppCompatActivity() {
         var RegisterBtn:Button = findViewById(R.id.button2);
         var LogInBtn:Button = findViewById(R.id.button);
 
+        //sends the user to registeration page
         RegisterBtn.setOnClickListener(View.OnClickListener {
             val registerIntent = Intent(this,RegisterPageActivity::class.java);
             startActivity(registerIntent);
         });
+        //sends the user to the log in page
         LogInBtn.setOnClickListener(View.OnClickListener {
             val loginIntent = Intent(this,LogInIntent::class.java);
             startActivity(loginIntent)

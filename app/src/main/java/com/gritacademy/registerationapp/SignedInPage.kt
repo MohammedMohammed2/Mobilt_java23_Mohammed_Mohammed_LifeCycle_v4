@@ -17,11 +17,15 @@ class SignedInPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
         val signOutIntent = Intent(this, MainActivity::class.java)
         val profileIntent = Intent(this, profilePage::class.java)
+        //menu
         val menu:Spinner = findViewById(R.id.menu)
+
         auth = FirebaseAuth.getInstance()
 
+        //menu
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.menu_array,
