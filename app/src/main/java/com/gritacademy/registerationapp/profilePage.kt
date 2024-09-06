@@ -91,12 +91,13 @@ class profilePage : AppCompatActivity() {
                 nameEdit.text = name.toString().trim()
                 phoneEdit.text = phoneNumber.toString().trim()            }
         }
+
         editBtn.setOnClickListener(View.OnClickListener {
             if (nameEdit.text != "" && phoneEdit.text !="" ){
                 if (logedUser != null) {
-                    db.collection("users").document(logedUser.uid).update("name", nameEdit,"phone",phoneEdit)
-                }else{
-                    Toast.makeText(this,"hidhaiw",Toast.LENGTH_SHORT).show()
+                    db.collection("users").document(logedUser.uid).update("name", nameEdit.text.toString().trim(),"phone",phoneEdit.text.toString().trim())
+                    Toast.makeText(this,"user updated",Toast.LENGTH_SHORT).show()
+                    startActivity(homeIntent)
                 }
             }else{
                 Toast.makeText(this,"Please fill in the credentials",Toast.LENGTH_SHORT).show()
